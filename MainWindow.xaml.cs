@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Victor_Estevez_Ap1_p1.UI.Registros;
+using Victor_Estevez_Ap1_p1.UI.Consultas;
 
 namespace Victor_Estevez_Ap1_p1
 {
@@ -24,5 +26,20 @@ namespace Victor_Estevez_Ap1_p1
         {
             InitializeComponent();
         }
+
+        
+        private void RegistroMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var rEjemplo = new rEjemplo();
+            rEjemplo.Show();
+        }
+
+
+        private void ConsultaMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+             var cEjemplo = new cEjemplo();
+            cEjemplo.Show();
+        }
+
     }
 }
