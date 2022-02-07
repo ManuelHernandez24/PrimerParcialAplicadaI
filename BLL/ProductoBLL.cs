@@ -9,7 +9,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
 {
     public class ProductoBLL
     {
-        /*
+        
         public static bool Existe(int productoId){
             Contexto contexto = new Contexto();
             bool encontrado = false;
@@ -26,9 +26,86 @@ namespace Victor_Estevez_Ap1_p1.BLL
         }
 
         public static bool Guardar(Producto producto){
-            if(!Existe()producto.ProductoId)
+            if(!Existe(producto.ProductoId)){
+                return Insertar(producto);
+            }else{
+                return Modificar(producto);
+            }
         }
-        */
+
+        public static bool Insertar(Producto producto){
+            Contexto contexto = new Contexto();
+            bool paso = false;
+
+            try{
+                contexto.Producto.Add(producto);
+                paso = contexto.SaveChanges() > 0;
+            } catch(Exception){
+                throw;
+            }finally{
+                contexto.Dispose();
+            }
+            return paso;
+        }
+
+        private static bool Modificar(Producto producto){
+            Contexto contexto = new Contexto();
+            bool paso = false;
+            try{
+                contexto.Entry(producto).State = EntityState.Modified;
+                paso = contexto.SaveChanges() > 0;
+            } catch(Exception){
+                throw;
+            } finally{
+                contexto.Dispose();
+            }
+            return paso;
+        }
+
+        private static bool Eliminar(int productoId){
+            Contexto contexto = new Contexto();
+            bool paso = false;
+            try{
+                var producto = contexto.Producto.Find(productoId);
+                if(producto != null){
+                    contexto.Producto.Remove(producto);
+                    paso = contexto.SaveChanges() > 0;
+                }
+            }catch(Exception){
+                throw;
+            } finally{
+                contexto.Dispose();
+            }
+            return paso;
+        }
+
+        private static Producto? Buscar(int productoId){
+            Contexto contexto = new Contexto();
+            Producto ?producto;
+            bool paso = false;
+            try{
+                producto = contexto.Producto.Find(productoId);
+            } catch(Exception){
+                throw;
+            }finally{
+                contexto.Dispose();
+            }
+            return producto;
+        }
+
+        private static List<Producto> GetList (Expression<Func<Producto, bool >> criterio){
+            Contexto contexto = new Contexto();
+            List<Producto> lista = new List<Producto>();
+
+            try{
+                lista = contexto.Producto.Where(criterio).ToList();
+            }catch(Exception){
+                throw;
+            } finally{
+                contexto.Dispose();
+            }
+            return lista;
+        }        
     }
 
 }
