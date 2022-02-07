@@ -13,14 +13,12 @@ namespace Victor_Estevez_Ap1_p1.UI.Consultas
         {
             InitializeComponent();
         }
-    }
-}
 
-
-       
-/*
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
-*/
+    }
+}
+
+        
