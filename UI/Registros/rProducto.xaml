@@ -16,20 +16,32 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBox Text="{Binding EjemploId}" Width="100" />
-                    <Button Content="🔎 Buscar" Click="BuscarButton_Click" /> 
+                    <Button Content="🔎 Buscar"  />  <!-- Click="BuscarButton_Click" -->
                 </StackPanel>
             </StackPanel>
+
+            <Label Content="Descripcion"/>
+            <TextBox x:Name = "TextBoxDescripcion" Text="{Binding Descripcion}"/>
+
+            <Label Content="Costo"/>
+            <TextBox x:Name = "TextBoxCosto" Text="{Binding Descripcion}"/>
+
+            <Label Content="Valor de inventario:"/>
+            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding Costo}"/>
+
+            <CheckBox x:Name = "CheckBoxExistencia" Margin="10" IsChecked = "True">Existencia</CheckBox>
+            
 
 
             <!-- BARRA DE BOTONES -->
             <StackPanel 
-                        Margin="0,16,0,0"                      
+                        Margin="0,5,0,0"                      
                         Orientation="Horizontal" 
                         HorizontalAlignment="Center" >
                 
-                <Button Content="🆕 Nuevo" Click="NuevoButton_Click"/>
-                <Button Content="✔ Guardar" Click="GuardarButton_Click" />
-                <Button Content="⛔ Eliminar" Click="EliminarButton_Click"/>
+                <Button Content="🆕 Nuevo" /> <!-- Click="NuevoButton_Click" -->
+                <Button Content="✔ Guardar"  /> <!-- Click="GuardarButton_Click" -->
+                <Button Content="⛔ Eliminar" /> <!-- Click="EliminarButton_Click" -->
             </StackPanel>
 
         </StackPanel>

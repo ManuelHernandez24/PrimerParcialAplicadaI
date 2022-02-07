@@ -4,8 +4,10 @@ using Victor_Estevez_Ap1_p1.BLL;
 
 namespace Victor_Estevez_Ap1_p1.UI.Registros
 {
-    public partial class rEjemplo : Window
+    public partial class rProducto : Window
     {
-        
+        public rProducto(){
+            InitializeComponent();
+        }
     }
 }
