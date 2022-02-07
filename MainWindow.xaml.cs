@@ -30,15 +30,15 @@ namespace Victor_Estevez_Ap1_p1
         
         private void RegistroMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var rEjemplo = new rEjemplo();
-            rEjemplo.Show();
+            var rEjemplo = new rProducto();
+            rProducto.Show();
         }
 
 
         private void ConsultaMenuItem_Click(object sender, RoutedEventArgs e)
         {
-             var cEjemplo = new cEjemplo();
-            cEjemplo.Show();
+             var cProducto = new cEjemplo();
+            cProducto.Show();
         }
 
     }
