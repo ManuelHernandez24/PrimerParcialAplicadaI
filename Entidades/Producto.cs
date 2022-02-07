@@ -7,7 +7,7 @@ namespace Victor_Estevez_Ap1_p1.Entidades
         [Key]
         public int ProductoId {get; set;}
         public string Descripcion {get; set;}
-        public bool Existencia {get; set;}
+        public float Existencia {get; set;}
         public float Costo {get; set;}
         public float ValorInventario {get; set;}
         

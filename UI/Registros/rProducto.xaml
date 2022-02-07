@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Victor_Estevez_Ap1_p1.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro" Height="300" Width="300">
+        Title="Registro de productos" Height="300" Width="300">
     <Grid>
 
         <StackPanel Orientation="Vertical" Margin="10"> 
@@ -23,13 +23,16 @@
             <Label Content="Descripcion"/>
             <TextBox x:Name = "TextBoxDescripcion" Text="{Binding Descripcion}"/>
 
+            <Label Content="Existencia:"/>
+            <TextBox x:Name = "TextBoxValorExistencia" Text="{Binding Existencia}"/>
+
             <Label Content="Costo"/>
             <TextBox x:Name = "TextBoxCosto" Text="{Binding Descripcion}"/>
 
             <Label Content="Valor de inventario:"/>
             <TextBox x:Name = "TextBoxValorInventario" Text="{Binding Costo}"/>
 
-            <CheckBox x:Name = "CheckBoxExistencia" Margin="10" IsChecked = "True">Existencia</CheckBox>
+            
             
 
 

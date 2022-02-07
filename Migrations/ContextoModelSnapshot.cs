@@ -28,8 +28,8 @@ namespace Victor_Estevez_Ap1_p1.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Existencia")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Existencia")
+                        .HasColumnType("REAL");
 
                     b.Property<float>("ValorInventario")
                         .HasColumnType("REAL");

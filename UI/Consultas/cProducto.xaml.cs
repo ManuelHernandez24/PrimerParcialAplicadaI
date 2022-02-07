@@ -9,14 +9,18 @@ namespace Victor_Estevez_Ap1_p1.UI.Consultas
     public partial class cProducto : Window
     {
 
+        private Producto Producto = new Producto();
         public cProducto()
         {
             InitializeComponent();
+            this.DataContext = Producto;
         }
+
+        //void 
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

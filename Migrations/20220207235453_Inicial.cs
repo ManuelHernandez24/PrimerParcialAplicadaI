@@ -15,7 +15,7 @@ namespace Victor_Estevez_Ap1_p1.Migrations
                     ProductoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descripcion = table.Column<string>(type: "TEXT", nullable: false),
-                    Existencia = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Existencia = table.Column<float>(type: "REAL", nullable: false),
                     Costo = table.Column<float>(type: "REAL", nullable: false),
                     ValorInventario = table.Column<float>(type: "REAL", nullable: false)
                 },
