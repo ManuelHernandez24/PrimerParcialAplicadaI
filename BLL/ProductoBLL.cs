@@ -5,9 +5,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ejemplo.BLL
+namespace Producto.BLL
 {
-    public class EjemploBLL
+    public class ProductoBLL
     {
         
     }
