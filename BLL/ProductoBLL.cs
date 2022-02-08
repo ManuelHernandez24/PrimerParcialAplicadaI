@@ -48,7 +48,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return paso;
         }
 
-        private static bool Modificar(Producto producto){
+        public static bool Modificar(Producto producto){
             Contexto contexto = new Contexto();
             bool paso = false;
             try{
@@ -62,7 +62,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return paso;
         }
 
-        private static bool Eliminar(int productoId){
+        public static bool Eliminar(int productoId){
             Contexto contexto = new Contexto();
             bool paso = false;
             try{
@@ -79,7 +79,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return paso;
         }
 
-        private static Producto? Buscar(int productoId){
+        public static Producto? Buscar(int productoId){
             Contexto contexto = new Contexto();
             Producto ?producto;
             bool paso = false;
@@ -93,7 +93,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return producto;
         }
 
-        private static List<Producto> GetList (Expression<Func<Producto, bool >> criterio){
+        public static List<Producto> GetList (Expression<Func<Producto, bool >> criterio){
             Contexto contexto = new Contexto();
             List<Producto> lista = new List<Producto>();
 

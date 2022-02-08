@@ -40,6 +40,5 @@ namespace Victor_Estevez_Ap1_p1
             var cProducto = new cProducto();
             cProducto.Show();
         }
-
     }
 }
