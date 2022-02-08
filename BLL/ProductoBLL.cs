@@ -105,7 +105,21 @@ namespace Victor_Estevez_Ap1_p1.BLL
                 contexto.Dispose();
             }
             return lista;
-        }        
+        }    
+
+        public static List<Producto> GetLista(){
+            List<Producto> lista = new List<Producto>();
+            Contexto contexto = new Contexto();
+
+            try{
+                lista = contexto.Producto.ToList();
+            }catch(Exception){
+                throw;
+            } finally{
+                contexto.Dispose();
+            }
+            return lista;
+        }      
     }
 
 }

@@ -16,7 +16,11 @@
                 <Label Content="Filtro:"/>
                 <ComboBox x:Name="FiltroComboBox" Width="100">
                     <ComboBox.Items> 
-                        <ComboBoxItem Content="Criterio1" />
+                        <ComboBoxItem Content="ID" />
+                        <ComboBoxItem Content="Descripción" />
+                        <ComboBoxItem Content="Existencia" />
+                        <ComboBoxItem Content="Costo" />
+                        <ComboBoxItem Content="Valor de inventario" />
                     </ComboBox.Items>
                 </ComboBox>
 
@@ -26,12 +30,12 @@
                 <TextBox x:Name="CriterioTextBox"   Width="100" />
 
                 <!-- BUSCAR -->
-                <Button Content="🔎 Buscar"  Click="BuscarButton_Click" />-->
+                <Button Content="🔎 Buscar"  Click="BuscarButton_Click" />
 
             </StackPanel>
 
             <!-- GRID -->
-            <DataGrid x:Name="EjemploDataGrid"  Height="250" Width="380"> 
+            <DataGrid x:Name="ProductoDataGrid"  Height="250" Width="380"> 
               
             </DataGrid>
 

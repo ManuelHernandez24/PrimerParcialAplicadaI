@@ -2,7 +2,6 @@ using System;
 using System.Windows;
 using Victor_Estevez_Ap1_p1.Entidades;
 using Victor_Estevez_Ap1_p1.BLL;
-
 namespace Victor_Estevez_Ap1_p1.UI.Registros
 {
     public partial class rProducto : Window
@@ -10,6 +9,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
         private Producto Producto = new Producto();
         public rProducto(){
             InitializeComponent();
+            Cargar();
         }
 
         void Cargar(){
@@ -29,7 +29,9 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                 esValido = false;
                 TextBoxDescripcion.Focus();
                 MessageBox.Show("No puede dejar el campo de descripcion vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia))){
+            }
+            
+            else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia))){
                 esValido = false;
                 TextBoxValorExistencia.Focus();
                 MessageBox.Show("No puede dejar el campo de existencia vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
@@ -37,10 +39,11 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                 esValido = false;
                 TextBoxCosto.Focus();
                 MessageBox.Show("No puede dejar el campo de costo vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia)) && string.IsNullOrWhiteSpace(Convert.ToString(Producto.Costo))){
+            }
+            if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia)) && string.IsNullOrWhiteSpace(Convert.ToString(Producto.Costo))){ 
                 float ValorInventario = float.Parse(TextBoxValorExistencia.Text) * float.Parse(TextBoxCosto.Text);
                 esValido = false;
-                TextBoxValorInventario.Text =Convert.ToString(ValorInventario);
+                TextBoxValorInventario.Text = Convert.ToString(ValorInventario);
                 TextBoxValorInventario.Focus();
                 MessageBox.Show("No se pudo calcular el valor de inventario.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
             }
@@ -92,7 +95,5 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                  MessageBox.Show("No fue posible eliminar el producto", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
     }
 }

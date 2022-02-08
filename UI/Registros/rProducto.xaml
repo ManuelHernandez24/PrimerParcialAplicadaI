@@ -16,7 +16,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBox Text="{Binding EjemploId}" Width="100" />
-                    <Button Content="🔎 Buscar"  Click="BuscarButton_Click"/>  <!--  -->
+                    <Button Content="🔎 Buscar"  Click="BuscarButton_Click"/>
                 </StackPanel>
             </StackPanel>
 
@@ -27,10 +27,10 @@
             <TextBox x:Name = "TextBoxValorExistencia" Text="{Binding Existencia}"/>
 
             <Label Content="Costo"/>
-            <TextBox x:Name = "TextBoxCosto" Text="{Binding Descripcion}"/>
+            <TextBox x:Name = "TextBoxCosto" Text="{Binding Costo}"/>
 
             <Label Content="Valor de inventario:"/>
-            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding Costo}"/>
+            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}" IsEnabled = "False" />
 
             
             
