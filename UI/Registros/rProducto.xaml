@@ -15,7 +15,7 @@
                 <Label Content="Id:"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Text="{Binding EjemploId}" Width="100" />
+                    <TextBox Text="{Binding ProductoId}" Width="100" />
                     <Button Content="🔎 Buscar"  Click="BuscarButton_Click"/>
                 </StackPanel>
             </StackPanel>
