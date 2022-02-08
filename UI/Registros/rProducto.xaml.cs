@@ -6,7 +6,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
 {
     public partial class rProducto : Window
     {
-        private Producto Producto = new Producto();
+        private Producto producto = new Producto();
         public rProducto(){
             InitializeComponent();
             Cargar();
@@ -14,58 +14,56 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
 
         void Cargar(){
             this.DataContext = null;
-            this.DataContext = this.Producto;
+            this.DataContext = this.producto;
         }
         
         void Limpiar(){
-            this.Producto = new Producto();
-            this.DataContext = Producto;
+            this.producto = new Producto();
+            this.DataContext = producto;
         }
 
         void calcularInventario(){
-            float ValorInventario = float.Parse(TextBoxValorExistencia.Text) * float.Parse(TextBoxCosto.Text);
-            TextBoxValorInventario.Text = Convert.ToString(ValorInventario);
+
+            float existencia = float.Parse(TextBoxValorExistencia.Text);
+            float costo = float.Parse(TextBoxCosto.Text);
+
+            float valorInventario = existencia * costo;
+            TextBoxValorInventario.Text = Convert.ToString(valorInventario);
+            producto.ValorInventario = valorInventario;
+            
         }
         private bool Validar(){
             bool esValido = true;
-            calcularInventario();
-
-            if(string.IsNullOrWhiteSpace(Producto.Descripcion)){
-                esValido = false;
-                TextBoxDescripcion.Focus();
-                MessageBox.Show("No puede dejar el campo de descripcion vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }            
-            else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia))){
-                esValido = false;
-                TextBoxValorExistencia.Focus();
-                MessageBox.Show("No puede dejar el campo de existencia vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Costo))){
-                esValido = false;
-                TextBoxCosto.Focus();
-                MessageBox.Show("No puede dejar el campo de costo vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-            else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.ValorInventario))){ 
-                esValido = false;
-                TextBoxValorInventario.Focus();
-                MessageBox.Show("No se pudo calcular el valor de inventario.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-            return esValido;            
+                if(string.IsNullOrWhiteSpace(producto.Descripcion)){
+                    esValido = false;
+                    TextBoxDescripcion.Focus();
+                    MessageBox.Show("No puede dejar el campo de descripcion vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }            
+                else if(string.IsNullOrWhiteSpace(Convert.ToString(producto.Existencia))){
+                    esValido = false;
+                    TextBoxValorExistencia.Focus();
+                    MessageBox.Show("No puede dejar el campo de existencia vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }else if(string.IsNullOrWhiteSpace(Convert.ToString(producto.Costo))){
+                    esValido = false;
+                    TextBoxCosto.Focus();
+                    MessageBox.Show("No puede dejar el campo de costo vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }            
+            return esValido;         
         }
-            
         
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            var encontrado = ProductoBLL.Buscar(this.Producto.ProductoId);
+            var encontrado = ProductoBLL.Buscar(this.producto.ProductoId);
 
             if(encontrado != null){
-                this.Producto = encontrado;
+                this.producto = encontrado;
                 Cargar();
             }else{
                 Limpiar();
                 MessageBox.Show("No se encontro el producto.","Fallo", MessageBoxButton.OK,MessageBoxImage.Error);
             }
         }
-
+        
         private void NuevoButton_Click(object sender, RoutedEventArgs e)
         {
             Limpiar();
@@ -73,24 +71,29 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
 
         private void GuardarButton_Click(object sender, RoutedEventArgs e)
         {
-            bool paso = false;
+            if(!ProductoBLL.ExisteDescripcion(producto.Descripcion)){
+                bool paso = false;
 
-            if(!Validar()){
-                return;
-            }
+                if(!Validar()){
+                    return;
+                }
+                calcularInventario();
+                
+                paso = ProductoBLL.Guardar(producto);
 
-            paso = ProductoBLL.Guardar(Producto);
-
-            if(paso){
-                MessageBox.Show("El producto se guardó con exito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                if(paso){
+                    MessageBox.Show("El producto se guardó con exito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }else{
+                    MessageBox.Show("El producto no se guardó", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }else{
-                MessageBox.Show("El producto no se guardó", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
+                 MessageBox.Show($"Ya hay un producto con la descripción {TextBoxDescripcion.Text}", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            if(ProductoBLL.Eliminar(Producto.ProductoId)){
+            if(ProductoBLL.Eliminar(producto.ProductoId)){
                 Limpiar();
                 MessageBox.Show("El producto se eliminó con exito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
             } else{

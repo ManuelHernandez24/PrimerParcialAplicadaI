@@ -25,6 +25,25 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return encontrado;
         }
 
+        public static bool ExisteDescripcion(string descripcion){
+            Contexto contexto = new Contexto();
+            bool encontrado = false;
+
+            try
+            {
+                encontrado = contexto.Producto.Any(l => l.Descripcion == descripcion);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return encontrado;
+        }
+
         public static bool Guardar(Producto producto){
             if(!Existe(producto.ProductoId)){
                 return Insertar(producto);
@@ -92,7 +111,6 @@ namespace Victor_Estevez_Ap1_p1.BLL
             }
             return producto;
         }
-        //Buscar por criterio 
         public static List<Producto> GetList (Expression<Func<Producto, bool >> criterio){
             Contexto contexto = new Contexto();
             List<Producto> lista = new List<Producto>();
@@ -105,22 +123,6 @@ namespace Victor_Estevez_Ap1_p1.BLL
                 contexto.Dispose();
             }
             return lista;
-        }    
-
-        //Lista de prueba para ver que todo funcione bien, funciona sin criterio
-        public static List<Producto> GetLista(){
-            List<Producto> lista = new List<Producto>();
-            Contexto contexto = new Contexto();
-
-            try{
-                lista = contexto.Producto.ToList();
-            }catch(Exception){
-                throw;
-            } finally{
-                contexto.Dispose();
-            }
-            return lista;
-        }      
+        }                   
     }
-
 }

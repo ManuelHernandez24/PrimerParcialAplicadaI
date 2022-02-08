@@ -16,15 +16,24 @@ namespace Victor_Estevez_Ap1_p1.UI.Consultas
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var listado = new List<Producto>();
-            
-            if(string.IsNullOrWhiteSpace(CriterioTextBox.Text)){
-                listado = ProductoBLL.GetList(l >= true);
-            }
-            */
 
-            ProductoDataGrid.ItemsSource = ProductoBLL.GetLista();
+            if (string.IsNullOrWhiteSpace(CriterioTextBox.Text)) //si no hay criterio, busco todos         
+                listado = ProductoBLL.GetList(l => true);
+            else
+            {
+                switch (FiltroComboBox.SelectedIndex)
+                {
+                    case 0: 
+                        listado = ProductoBLL.GetList(l => l.ProductoId == int.Parse(CriterioTextBox.Text));
+                        break;
+                    case 1: 
+                        listado = ProductoBLL.GetList(l => l.Descripcion.Contains(CriterioTextBox.Text));
+                        break;
+                }
+            }
+            ProductoDataGrid.ItemsSource = null;
+            ProductoDataGrid.ItemsSource = listado;
         }
     }
 }

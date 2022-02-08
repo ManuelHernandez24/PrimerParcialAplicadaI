@@ -30,7 +30,7 @@
             <TextBox x:Name = "TextBoxCosto" Text="{Binding Costo}"/>
 
             <Label Content="Valor de inventario:"/>
-            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}"/>
+            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}" IsReadOnly = "False" />
 
             <!-- BARRA DE BOTONES -->
             <StackPanel 

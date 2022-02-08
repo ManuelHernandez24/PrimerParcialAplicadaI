@@ -18,9 +18,6 @@
                     <ComboBox.Items> 
                         <ComboBoxItem Content="ID" />
                         <ComboBoxItem Content="Descripción" />
-                        <ComboBoxItem Content="Existencia" />
-                        <ComboBoxItem Content="Costo" />
-                        <ComboBoxItem Content="Valor de inventario" />
                     </ComboBox.Items>
                 </ComboBox>
 
