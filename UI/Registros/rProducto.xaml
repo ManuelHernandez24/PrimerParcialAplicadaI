@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Victor_Estevez_Ap1_p1.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de productos" Height="300" Width="300">
+        Title="Registro de productos" Height="320" Width="300">
     <Grid>
 
         <StackPanel Orientation="Vertical" Margin="10"> 
@@ -30,11 +30,7 @@
             <TextBox x:Name = "TextBoxCosto" Text="{Binding Costo}"/>
 
             <Label Content="Valor de inventario:"/>
-            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}" IsEnabled = "False" />
-
-            
-            
-
+            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}"/>
 
             <!-- BARRA DE BOTONES -->
             <StackPanel 

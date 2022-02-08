@@ -92,7 +92,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             }
             return producto;
         }
-
+        //Buscar por criterio 
         public static List<Producto> GetList (Expression<Func<Producto, bool >> criterio){
             Contexto contexto = new Contexto();
             List<Producto> lista = new List<Producto>();
@@ -107,6 +107,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
             return lista;
         }    
 
+        //Lista de prueba para ver que todo funcione bien, funciona sin criterio
         public static List<Producto> GetLista(){
             List<Producto> lista = new List<Producto>();
             Contexto contexto = new Contexto();

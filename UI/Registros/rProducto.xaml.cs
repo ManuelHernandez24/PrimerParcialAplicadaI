@@ -22,15 +22,19 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
             this.DataContext = Producto;
         }
 
+        void calcularInventario(){
+            float ValorInventario = float.Parse(TextBoxValorExistencia.Text) * float.Parse(TextBoxCosto.Text);
+            TextBoxValorInventario.Text = Convert.ToString(ValorInventario);
+        }
         private bool Validar(){
             bool esValido = true;
+            calcularInventario();
 
             if(string.IsNullOrWhiteSpace(Producto.Descripcion)){
                 esValido = false;
                 TextBoxDescripcion.Focus();
                 MessageBox.Show("No puede dejar el campo de descripcion vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-            
+            }            
             else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia))){
                 esValido = false;
                 TextBoxValorExistencia.Focus();
@@ -40,10 +44,8 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                 TextBoxCosto.Focus();
                 MessageBox.Show("No puede dejar el campo de costo vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
             }
-            if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.Existencia)) && string.IsNullOrWhiteSpace(Convert.ToString(Producto.Costo))){ 
-                float ValorInventario = float.Parse(TextBoxValorExistencia.Text) * float.Parse(TextBoxCosto.Text);
+            else if(string.IsNullOrWhiteSpace(Convert.ToString(Producto.ValorInventario))){ 
                 esValido = false;
-                TextBoxValorInventario.Text = Convert.ToString(ValorInventario);
                 TextBoxValorInventario.Focus();
                 MessageBox.Show("No se pudo calcular el valor de inventario.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
             }
