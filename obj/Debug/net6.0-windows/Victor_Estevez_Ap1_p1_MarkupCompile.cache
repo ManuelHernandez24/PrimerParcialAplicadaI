@@ -1,20 +1,20 @@
 ﻿Victor_Estevez_Ap1_p1
-
+1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\Hernandez\Documents\Semestre 1-2022\Lab. Programación aplicada I\Victor_Estevez_Ap1_p1\obj\Debug\net6.0-windows\
+c:\Users\Hernandez\Documents\GitHub\PrimerParcialAplicadaI\obj\Debug\net6.0-windows\
 Victor_Estevez_Ap1_p1
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Hernandez\Documents\Semestre 1-2022\Lab. Programación aplicada I\Victor_Estevez_Ap1_p1\App.xaml
+c:\Users\Hernandez\Documents\GitHub\PrimerParcialAplicadaI\App.xaml
 3-150568510
 
-111759612815
+13-2119117613
 212862852917
 MainWindow.xaml;UI\Consultas\cProducto.xaml;UI\Registros\rProducto.xaml;
 
-False
+True
 
