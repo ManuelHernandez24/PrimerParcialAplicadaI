@@ -2,6 +2,9 @@ using System;
 using System.Windows;
 using Victor_Estevez_Ap1_p1.Entidades;
 using Victor_Estevez_Ap1_p1.BLL;
+using System.Text.RegularExpressions;
+
+
 namespace Victor_Estevez_Ap1_p1.UI.Registros
 {
     public partial class rProducto : Window
@@ -10,6 +13,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
         public rProducto(){
             InitializeComponent();
             Cargar();
+            Limpiar();
         }
 
         void Cargar(){
@@ -20,7 +24,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
         void Limpiar(){
             this.producto = new Producto();
             this.DataContext = producto;
-        }
+         }
 
         void calcularInventario(){
 
@@ -28,9 +32,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
             float costo = float.Parse(TextBoxCosto.Text);
 
             float valorInventario = existencia * costo;
-            TextBoxValorInventario.Text = Convert.ToString(valorInventario);
             producto.ValorInventario = valorInventario;
-            
         }
         private bool Validar(){
             bool esValido = true;
@@ -38,6 +40,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                     esValido = false;
                     TextBoxDescripcion.Focus();
                     MessageBox.Show("No puede dejar el campo de descripcion vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                    esValido = false;
                 }            
                 else if(string.IsNullOrWhiteSpace(Convert.ToString(producto.Existencia))){
                     esValido = false;
@@ -47,20 +50,38 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                     esValido = false;
                     TextBoxCosto.Focus();
                     MessageBox.Show("No puede dejar el campo de costo vacio.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
-                }            
+                }else if (Regex.IsMatch(TextBoxValorExistencia.Text, "[^0-9.-]")){
+                    esValido = false;
+                    MessageBox.Show("Solo puede introduccir números en valor existencia.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }else if (Regex.IsMatch(TextBoxCosto.Text, "[^0-9.-]")){
+                    esValido = false;
+                    MessageBox.Show("Solo puede introduccir números en valor existencia.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }else if (!Regex.IsMatch(TextBoxValorExistencia.Text, "[^0-9.-]") && Convert.ToInt32(TextBoxValorExistencia.Text) <= 0){
+                    esValido = false;
+                    MessageBox.Show("No puede ingresar numeros menor que 0 en valor existencia.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }else if (!Regex.IsMatch(TextBoxCosto.Text, "[^0-9.-]") && Convert.ToInt32(TextBoxValorExistencia.Text) <= 0){
+                    esValido = false;
+                    MessageBox.Show("No puede ingresar numeros menor que 0 en valor existencia.","Validación", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
+
             return esValido;         
         }
         
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            var encontrado = ProductoBLL.Buscar(this.producto.ProductoId);
+            if(!Regex.IsMatch(TextBoxBuscar.Text, "[^0-9.-]")){
+                var encontrado = ProductoBLL.Buscar(this.producto.ProductoId);
 
-            if(encontrado != null){
-                this.producto = encontrado;
-                Cargar();
+                if(encontrado != null){
+                    this.producto = encontrado;
+                    Cargar();
+                }else{
+                    Limpiar();
+                    MessageBox.Show("No se encontro el producto.","Fallo", MessageBoxButton.OK,MessageBoxImage.Error);
+                }
+
             }else{
-                Limpiar();
-                MessageBox.Show("No se encontro el producto.","Fallo", MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show($"Solo se permite ingresar números para buscar por ID.", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         
@@ -83,6 +104,7 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
 
                 if(paso){
                     MessageBox.Show("El producto se guardó con exito", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Limpiar();
                 }else{
                     MessageBox.Show("El producto no se guardó", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -100,5 +122,6 @@ namespace Victor_Estevez_Ap1_p1.UI.Registros
                  MessageBox.Show("No fue posible eliminar el producto", "Fallo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

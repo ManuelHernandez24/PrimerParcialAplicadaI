@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        
         xmlns:local="clr-namespace:Victor_Estevez_Ap1_p1.UI.Registros"
         mc:Ignorable="d"
-        Title="Registro de productos" Height="320" Width="300">
+        Title="Registro de productos" Height="400" Width="400">
     <Grid>
 
         <StackPanel Orientation="Vertical" Margin="10"> 
@@ -15,7 +17,7 @@
                 <Label Content="Id:"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Text="{Binding ProductoId}" Width="100" />
+                    <TextBox Text="{Binding ProductoId}" Width="100" x:Name = "TextBoxBuscar"/>
                     <Button Content="🔎 Buscar"  Click="BuscarButton_Click"/>
                 </StackPanel>
             </StackPanel>
@@ -28,9 +30,6 @@
 
             <Label Content="Costo"/>
             <TextBox x:Name = "TextBoxCosto" Text="{Binding Costo}"/>
-
-            <Label Content="Valor de inventario:"/>
-            <TextBox x:Name = "TextBoxValorInventario" Text="{Binding ValorInventario}" IsReadOnly = "False" />
 
             <!-- BARRA DE BOTONES -->
             <StackPanel 

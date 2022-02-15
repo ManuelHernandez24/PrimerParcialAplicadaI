@@ -31,7 +31,7 @@ namespace Victor_Estevez_Ap1_p1.BLL
 
             try
             {
-                encontrado = contexto.Producto.Any(l => l.Descripcion == descripcion);
+                encontrado = contexto.Producto.Any(l => l.Descripcion.ToLower() == descripcion.ToLower());
             }
             catch (Exception)
             {
@@ -101,7 +101,6 @@ namespace Victor_Estevez_Ap1_p1.BLL
         public static Producto? Buscar(int productoId){
             Contexto contexto = new Contexto();
             Producto ?producto;
-            bool paso = false;
             try{
                 producto = contexto.Producto.Find(productoId);
             } catch(Exception){

@@ -18,6 +18,5 @@ namespace Victor_Estevez_Ap1_p1
             MessageBox.Show($"Ocurrio un error:( {args.Exception.Message}","Error no controlado", MessageBoxButton.OK, MessageBoxImage.Error);
             args.Handled = true;
         }
- 
     }
 }
